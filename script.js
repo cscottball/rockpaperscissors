@@ -16,13 +16,4 @@ function getComputerChoice() {
    
 }
 
-function getHumanChoice() {
-    let humanchoice = prompt("Please enter either Rock, Paper or Scissors:");
-    return humanchoice;
-}
-
-
-
-
 console.log(getComputerChoice());
-console.log(getHumanChoice());
