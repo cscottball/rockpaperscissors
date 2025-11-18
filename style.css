@@ -1,6 +1,6 @@
-* {
+/* * {
     outline: 2px solid red;
-}
+} */
 
 .game-container {
     display: flex;
@@ -32,4 +32,24 @@ body {
 
 .scissors {
     margin-top: -50px;
+}
+
+.game-container img {
+    display: block;
+    width: 225px;        /* adjust size if you like */
+    cursor: pointer;
+}
+
+/* Wiggle when hovered */
+.game-container img:hover {
+    animation: wiggle 0.6s ease-in-out infinite;
+}
+
+/* Define the wiggle animation */
+@keyframes wiggle {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(3deg); }
+    50%  { transform: rotate(-3deg); }
+    75%  { transform: rotate(2deg); }
+    100% { transform: rotate(0deg); }
 }
