@@ -1,7 +1,7 @@
-
+// Generates a random choice for the computer
 function getComputerChoice() {
     const x=Math.floor(Math.random()*3);
-    console.log(x);
+    
 
     let computerchoice ; 
     
@@ -18,9 +18,21 @@ function getComputerChoice() {
 
 // Logs the human choice
 function getHumanChoice(choice) {
-    console.log("Human choice:", choice);
     return choice;
 }
+
+// Determines the winner based on computer and human choices
+function whoisthewinner(computer, human) {
+    if (computer === human) {
+        return "It's a tie!";
+    }   else if ((computer === "Rock" && human === "Scissors") ||
+               (computer === "Paper" && human === "Rock") ||
+               (computer === "Scissors" && human === "Paper")) {
+        return "Computer wins!";
+    }   else {
+        return "Human wins!";
+    }    
+}   
 
 // Run this after the HTML has loaded
 document.addEventListener("DOMContentLoaded", function () {
@@ -30,15 +42,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // Attach a click listener to each image
     images.forEach(function (img) {
         img.addEventListener("click", function () {
-            // Read the data-choice value from the clicked image
-            const humanChoice = img.dataset.choice;        // "Rock" / "Paper" / "Scissors"
+            // 1) Human choice from the clicked image (e.g. "Rock")
+            const humanChoice = getHumanChoice(img.dataset.choice);
 
-            // Get a fresh computer choice
-            const computerChoice = getComputerChoice();    // also logs the random 0/1/2
+            // 2) Get a fresh computer choice (e.g. "Paper")
+            const computerChoice = getComputerChoice();
 
-            // Log both in order: computer, then human
+            // 3) Work out who wins
+            const result = whoisthewinner(computerChoice, humanChoice);
+
+            // 4) Log everything
+            console.log("Human choice:", humanChoice);
             console.log("Computer choice:", computerChoice);
-            getHumanChoice(humanChoice);
+            console.log("Result:", result);
         });
     });
 });
