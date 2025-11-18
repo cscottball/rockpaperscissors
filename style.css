@@ -1,6 +1,4 @@
-/* * {
-    outline: 2px solid red;
-} */
+
 
 .game-container {
     display: flex;
@@ -11,6 +9,42 @@
     font-size: 50px;
     
 }
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* New: the row that holds left + right panels */
+.main-row {
+  display: flex;
+  flex-direction: column;      /* stacked initially */
+  align-items: center;
+  margin-top: 40px;
+}
+
+/* When the game has started, switch JUST this row to side-by-side */
+.main-row.started {
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 70px;
+}
+
+/* Right side: results + scoreboard stacked vertically */
+/* Right side hidden until the game has started */
+.right-panel {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* When the container has .started, show the right panel */
+.main-row.started .right-panel {
+    display: flex;
+}
+
 
 body {
     background-color: black;
@@ -52,4 +86,96 @@ body {
     50%  { transform: rotate(-3deg); }
     75%  { transform: rotate(2deg); }
     100% { transform: rotate(0deg); }
+}
+
+/* Container for results + scoreboard */
+.results-row {
+    margin-top: 40px;
+    width: 90%;                 /* so it doesn’t span the whole window */
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+/* Results block stays flexible inside the row */
+.results {
+    display: none;              /* hidden until we have a result */
+    align-items: center;
+    gap: 40px;
+}
+
+/* When JS adds .show, the results become visible */
+.results.show {
+    display: flex;
+    align-content: center;
+}
+
+/* Columns for human/computer */
+.result-column {
+    position: relative;
+    text-align: center;
+}
+
+.result-column img {
+    width: 180px;
+}
+
+.result-label {
+    margin-top: 8px;
+    font-size: 30px;
+}
+
+.winner-label {
+    margin-top: 4px;
+    font-size: 30px;
+    color: #4ade80;
+    font-weight: bold;
+}
+
+.vs-text {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+/* Red cross overlay */
+.cross {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 120px;
+    color: red;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.cross.show {
+    opacity: 1;
+}
+
+/* Scoreboard on the right */
+.scoreboard {
+    display: flex;
+    flex-direction: column;
+
+    color: white;
+    font-size: 36px;
+    text-align: right;
+    min-width: 220px;   /* tweak this number if needed */
+    white-space: nowrap;    /* keep "Computer: 0" on one line */
+    margin: 4px 0;    
+}
+
+.scoreboard h2 {
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.resultstitle {
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    padding-top: 50px;
 }
